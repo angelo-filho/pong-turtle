@@ -35,6 +35,7 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = 1
 ball.dy = 1
+ball_speed = 0.2
 
 # score
 score_1 = 0
@@ -97,9 +98,9 @@ screen.onkeypress(paddle_2_down, "Down")
 while True:
     screen.update()
 
-    # ball movement
-    ball.setx(ball.xcor() + ball.dx)
-    ball.sety(ball.ycor() + ball.dy)
+    # Ball movement
+    ball.setx(ball.xcor() + (ball_speed * ball.dx))
+    ball.sety(ball.ycor() + (ball_speed * ball.dy))
 
     # collision with the upper wall
     if ball.ycor() > 290:
