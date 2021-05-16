@@ -4,7 +4,7 @@ from math import radians, cos, sin
 import platform
 import os
 
-# Getting OS name\
+# Getting OS name
 system = platform.system()
 
 # Setting the audios configs
