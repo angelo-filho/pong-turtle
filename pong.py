@@ -1,5 +1,32 @@
 import turtle
+import platform
 import os
+
+# Getting OS name
+system = platform.system()
+
+# Setting the audios configs
+audio_bounce = ""
+audio_score = ""
+
+if system == "Windows":
+    import winsound
+
+    audio_bounce = "bounce.wav&"
+    audio_score = "258020__kodack__arcade-bleep-sound.wav&"
+elif system == "Linux":
+    audio_bounce = "aplay bounce.wav&"
+    audio_score = "aplay 258020__kodack__arcade-bleep-sound.wav&"
+elif "Darwin":
+    audio_bounce = "afplay bounce.wav&"
+    audio_score = "afplay 258020__kodack__arcade-bleep-sound.wav&"
+
+
+def play_audio(audio_name):
+    if system == "Windows":
+        winsound.PlaySound(audio_name, winsound.SND_ASYNC)
+    else:
+        os.system(audio_name)
 
 # draw screen
 screen = turtle.Screen()
@@ -104,13 +131,13 @@ while True:
 
     # collision with the upper wall
     if ball.ycor() > 290:
-        os.system("afplay bounce.wav&")
+        play_audio(audio_bounce)
         ball.sety(290)
         ball.dy *= -1
 
     # collision with lower wall
     if ball.ycor() < -290:
-        os.system("afplay bounce.wav&")
+        play_audio(audio_bounce)
         ball.sety(-290)
         ball.dy *= -1
 
@@ -119,7 +146,7 @@ while True:
         score_2 += 1
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P", 24, "normal"))
-        os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
+        play_audio(audio_score)
         ball.goto(0, 0)
         ball.dx *= -1
 
@@ -128,16 +155,15 @@ while True:
         score_1 += 1
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P", 24, "normal"))
-        os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
+        play_audio(audio_score)
         ball.goto(0, 0)
         ball.dx *= -1
 
     # collision with the paddle 1
     if ball.xcor() < -330 and paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() - 50:
         ball.dx *= -1
-        os.system("afplay bounce.wav&")
-
+        play_audio(audio_bounce)
     # collision with the paddle 2
     if ball.xcor() > 330 and paddle_2.ycor() + 50 > ball.ycor() > paddle_2.ycor() - 50:
         ball.dx *= -1
-        os.system("afplay bounce.wav&")
+        play_audio(audio_bounce)
