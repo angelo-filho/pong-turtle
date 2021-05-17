@@ -5,18 +5,18 @@ import platform
 import os
 
 # Getting OS name
-system = platform.system()
+SYSTEM = platform.system()
 
 # Setting the audios configs
 audio_bounce = ""
 audio_score = ""
 
-if system == "Windows":
+if SYSTEM == "Windows":
     import winsound
 
     audio_bounce = "bounce.wav&"
     audio_score = "258020__kodack__arcade-bleep-sound.wav&"
-elif system == "Linux":
+elif SYSTEM == "Linux":
     audio_bounce = "aplay bounce.wav&"
     audio_score = "aplay 258020__kodack__arcade-bleep-sound.wav&"
 elif "Darwin":
@@ -25,7 +25,7 @@ elif "Darwin":
 
 
 def play_audio(audio_name):
-    if system == "Windows":
+    if SYSTEM == "Windows":
         winsound.PlaySound(audio_name, winsound.SND_ASYNC)
     else:
         os.system(audio_name)
@@ -87,7 +87,7 @@ score_1 = 0
 score_2 = 0
 
 # Maximum score
-score_max = 5
+MAX_SCORE = 5
 
 # Head-up display
 hud = turtle.Turtle()
@@ -206,7 +206,7 @@ while True:
         play_audio(audio_bounce)
 
     # Checks victory condition
-    if score_1 == score_max or score_2 == score_max:
+    if score_1 == MAX_SCORE or score_2 == MAX_SCORE:
         victory = turtle.Turtle()
         victory.color("white")
         victory.penup()
