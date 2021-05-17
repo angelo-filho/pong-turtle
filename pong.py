@@ -180,7 +180,7 @@ while True:
         play_audio(audio_score)
 
     # Collision with the paddle 1
-    if ball.xcor() < -330 and paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() - 50 \
+    if paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() - 50 \
             and -360 < ball.xcor() < -330:
         if paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() + 10:
             change_ball_angle()
@@ -193,7 +193,7 @@ while True:
         play_audio(audio_bounce)
 
     # Collision with the paddle 2
-    if ball.xcor() > 330 and paddle_2.ycor() + 50 > ball.ycor() > paddle_2.ycor() - 50 \
+    if paddle_2.ycor() + 50 > ball.ycor() > paddle_2.ycor() - 50 \
             and 360 > ball.xcor() > 330:
         if paddle_2.ycor() + 50 > ball.ycor() > paddle_2.ycor() + 10:
             change_ball_angle(-1)
