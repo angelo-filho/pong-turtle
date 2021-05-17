@@ -86,6 +86,9 @@ def change_ball_angle(direction_x=1, direction_y=1):
 score_1 = 0
 score_2 = 0
 
+# Maximum score
+score_max = 5
+
 # Head-up display
 hud = turtle.Turtle()
 hud.speed(0)
@@ -199,3 +202,22 @@ while True:
             ball.dx = -1
 
         play_audio(audio_bounce)
+
+    # Checks victory condition
+    if score_1 == score_max or score_2 == score_max:
+        victory = turtle.Turtle()
+        victory.color("white")
+        victory.penup()
+        hud.hideturtle()
+        victory.goto(0, 0)
+
+        if score_1 > score_2:
+            winner = 'Player 1'
+        else:
+            winner = 'Player 2'
+
+        victory.write("Victory {}".format(winner), align="center",
+                      font=("Press Start 2P", 24, "normal"))
+
+        screen.listen()
+        screen.exitonclick()
