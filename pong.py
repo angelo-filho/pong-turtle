@@ -177,7 +177,7 @@ while True:
         hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P", 24, "normal"))
         ball.goto(0, 0)
         ball_speed += 0.0025
-        play_audio(audio_bounce)
+        play_audio(audio_score)
 
     # Collision with the paddle 1
     if ball.xcor() < -330 and paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() - 50 \
